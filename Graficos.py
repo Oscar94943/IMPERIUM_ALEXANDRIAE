@@ -3,75 +3,74 @@ import seaborn as sns
 import pandas as pd             
 import numpy as np              
 
-# --- Sección 1: Configuración Básica y Datos de Ejemplo ---
 print("--- Sección 1: Configuración Básica y Datos de Ejemplo ---")
 
-# Configuración básica para que los gráficos se vean bien
-plt.style.use('ggplot') # Un estilo predefinido que se ve bien
-plt.rcParams['figure.figsize'] = (10, 6) # Tamaño por defecto de las figuras
-plt.rcParams['font.family'] = 'sans-serif' # Fuente para los textos
-plt.rcParams['font.sans-serif'] = ['Arial'] # Especificar Arial como fuente sans-serif
 
-# Datos de ejemplo para los gráficos
-x = np.linspace(0, 10, 100) # 100 puntos entre 0 y 10
+plt.style.use('ggplot') 
+plt.rcParams['figure.figsize'] = (10, 6) 
+plt.rcParams['font.family'] = 'sans-serif' 
+plt.rcParams['font.sans-serif'] = ['Arial'] 
+
+
+x = np.linspace(0, 10, 100) 
 y1 = np.sin(x)
 y2 = np.cos(x)
 y_scatter = np.random.rand(50) * 10
 x_scatter = np.random.rand(50) * 10
-sizes = np.random.rand(50) * 100 + 50 # Tamaños de puntos para scatter
+sizes = np.random.rand(50) * 100 + 50
 
 categorias = ['A', 'B', 'C', 'D', 'E']
 valores = [23, 45, 56, 12, 39]
 
-datos_histograma = np.random.randn(1000) * 10 + 50 # Datos con distribución normal
+datos_histograma = np.random.randn(1000) * 10 + 50 
 
 print("Datos de ejemplo creados.")
 
-# --- Sección 2: Gráfico de Líneas Básico (plt.plot()) ---
+
 print("\n--- Sección 2: Gráfico de Líneas Básico ---")
 
-# Creamos una figura y un eje para el gráfico
-plt.figure(figsize=(8, 5)) # Tamaño específico para esta figura
+
+plt.figure(figsize=(8, 5)) 
 plt.plot(x, y1, label='Seno(x)', color='blue', linestyle='-', linewidth=2)
 plt.plot(x, y2, label='Coseno(x)', color='red', linestyle='--', linewidth=1.5)
 
-# Añadimos título y etiquetas a los ejes
+
 plt.title('Gráfico de Líneas de Funciones Seno y Coseno')
 plt.xlabel('Eje X')
 plt.ylabel('Eje Y')
 
-# Añadimos una leyenda para identificar las líneas
+
 plt.legend()
 
-# Añadimos una cuadrícula para facilitar la lectura
+
 plt.grid(True)
 
-# Mostramos el gráfico
+
 plt.show()
 print("Gráfico de líneas básico mostrado.")
 
-# --- Sección 3: Gráfico de Dispersión (Scatter Plot - plt.scatter()) ---
+
 print("\n--- Sección 3: Gráfico de Dispersión ---")
 
 plt.figure(figsize=(8, 5))
 plt.scatter(x_scatter, y_scatter,
-            s=sizes, # Tamaño de los puntos
-            c=y_scatter, # Color basado en el valor de y_scatter
-            cmap='viridis', # Mapa de colores
-            alpha=0.7, # Transparencia
-            edgecolors='w', # Borde blanco
+            s=sizes,
+            c=y_scatter, 
+            cmap='viridis', 
+            alpha=0.7, 
+            edgecolors='w', 
             label='Puntos de Datos')
 
 plt.title('Gráfico de Dispersión de Datos Aleatorios')
 plt.xlabel('Variable X')
 plt.ylabel('Variable Y')
-plt.colorbar(label='Valor Y') # Barra de color si se usa 'c'
+plt.colorbar(label='Valor Y') 
 plt.legend()
 plt.grid(True)
 plt.show()
 print("Gráfico de dispersión mostrado.")
 
-# --- Sección 4: Gráfico de Barras (Bar Chart - plt.bar()) ---
+
 print("\n--- Sección 4: Gráfico de Barras ---")
 
 plt.figure(figsize=(8, 5))
@@ -83,7 +82,7 @@ plt.ylabel('Valor')
 plt.show()
 print("Gráfico de barras mostrado.")
 
-# --- Sección 5: Histograma (plt.hist()) ---
+
 print("\n--- Sección 5: Histograma ---")
 
 plt.figure(figsize=(8, 5))
@@ -95,7 +94,7 @@ plt.ylabel('Frecuencia')
 plt.show()
 print("Histograma mostrado.")
 
-# --- Sección 6: Personalización Adicional ---
+
 print("\n--- Sección 6: Personalización Adicional ---")
 
 plt.figure(figsize=(8, 5))
@@ -103,25 +102,25 @@ plt.plot(x, y1, color='purple', label='Función Principal')
 plt.title('Gráfico Personalizado con Anotaciones', fontsize=16, color='darkblue')
 plt.xlabel('Tiempo (segundos)', fontsize=12)
 plt.ylabel('Amplitud', fontsize=12)
-plt.legend(loc='upper right', shadow=True, fancybox=True) # Personalizar leyenda
-plt.grid(axis='y', linestyle='--', alpha=0.7) # Cuadrícula solo en eje Y
+plt.legend(loc='upper right', shadow=True, fancybox=True) 
+plt.grid(axis='y', linestyle='--', alpha=0.7) 
 
-# Añadir anotaciones de texto
+
 plt.text(2, 0.8, 'Pico Máximo', fontsize=10, color='green',
          bbox=dict(facecolor='yellow', alpha=0.5, boxstyle='round,pad=0.5'))
 plt.annotate('Inicio', xy=(0, 0), xytext=(1, -0.5),
              arrowprops=dict(facecolor='black', shrink=0.05),
              fontsize=10, color='black')
 
-# Guardar el gráfico en un archivo (se guarda en la misma carpeta donde ejecutas el script)
+
 plt.savefig('mi_primer_grafico_personalizado.png', dpi=300, bbox_inches='tight')
 print("Gráfico personalizado con anotaciones guardado como 'mi_primer_grafico_personalizado.png'.")
 plt.show()
 
-# --- Sección 7: Múltiples Gráficos (Subplots - plt.subplots()) ---
+
 print("\n--- Sección 7: Múltiples Gráficos (Subplots) ---")
 
-# Creamos una figura con 2 filas y 2 columnas de subplots
+
 fig, axes = plt.subplots(2, 2, figsize=(12, 10))
 
 # Gráfico de líneas en el primer subplot (arriba izquierda)
@@ -233,5 +232,6 @@ plt.figure(figsize=(8, 7))
 correlation_matrix = iris.drop('species', axis=1).corr() # Calculamos la matriz de correlación
 sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", linewidths=.5)
 plt.title('Matriz de Correlación del Iris Dataset')
+plt.xticks(rotation=45)
 plt.show()
 print("Tutorial de graficación finalizado.")
